@@ -89,7 +89,7 @@ namespace ShoppList
                 Date = datePicker.Date.ToString(),
                 Value = textBlock.Text,
                 Descripion = textBlock3.Text,
-                Category = comboBox.SelectedItem.ToString(),
+                Category = ((ComboBoxItem)comboBox.SelectedItem).Content.ToString(),
                 User_id = 1
             };
             var shopJson = JsonConvert.SerializeObject(shop);
@@ -100,7 +100,7 @@ namespace ShoppList
 
             await client.PostAsync("http://localhost:11063/api/shops", HttpContent);
 
-            Frame.GoBack();
+            Frame.Navigate(typeof(History));
         }
     }
 }
