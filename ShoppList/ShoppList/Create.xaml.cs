@@ -1,10 +1,15 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using ShoppList.Interfaces;
+using ShoppList.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -17,14 +22,12 @@ using Windows.UI.Xaml.Navigation;
 
 namespace ShoppList
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class Create : Page
     {
-        public Create()
+         public Create()
         {
             this.InitializeComponent();
+            
         }
         //add
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -72,6 +75,32 @@ namespace ShoppList
         private void MenuButton5_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Help2));
+        }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.GoBack();
+        }
+
+        private async void AppBarButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            var shop = new Shop()
+            {
+                Date = datePicker.Date.ToString(),
+                Value = textBlock.Text,
+                Descripion = textBlock3.Text,
+                Category = comboBox.SelectedItem.ToString(),
+                User_id = 1
+            };
+            var shopJson = JsonConvert.SerializeObject(shop);
+
+            var client = new HttpClient();
+            var HttpContent = new StringContent(shopJson);
+            HttpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+
+            await client.PostAsync("http://localhost:11063/api/shops", HttpContent);
+
+            Frame.GoBack();
         }
     }
 }

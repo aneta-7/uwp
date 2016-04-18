@@ -7,8 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-
-
     <SplitView x:Name="MySplitView" DisplayMode="CompactInline"  IsPaneOpen="False" 
                CompactPaneLength="50" OpenPaneLength="150" Margin="0,0,0,0">
         <SplitView.Pane>
@@ -44,9 +42,19 @@
         </SplitView.Pane>
         <SplitView.Content>
             <Grid Background = "{ThemeResource ApplicationPageBackgroundThemeBrush}">
-                <TextBlock x:Name="textBlock1" Margin="10,10,10,0" TextWrapping="Wrap" Text="Your history" VerticalAlignment="Top" Height="86"  FontSize="34" Foreground="Pink" d:LayoutOverrides="LeftPosition, RightPosition"/>
-                <ListView x:Name="listView" Margin="5,90,5,80" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition"/>
-                <Button x:Name="button" Content="OK" HorizontalAlignment="Right" Margin="0,580,50,0" VerticalAlignment="Top" Width="100" Click="button_Click"/>
+                <ListBox x:Name="shopsList">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Padding="20" Margin="20">
+                                <TextBlock Text="{Binding Date}" FontSize="20" Foreground="Gray"/>
+                                <TextBlock Text="{Binding Value}" FontSize="20" Foreground="Gray"/>
+                                <TextBlock Text="{Binding Description}" FontSize="20" Foreground="Gray"/>
+                                <TextBlock Text="{Binding Category_id}" FontSize="20" Foreground="Gray"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <Button x:Name="button" Content="OK" HorizontalAlignment="Right" Margin="0,580,50,0" VerticalAlignment="Top" Width="100" Click="button_Click"/>
+                </ListBox>
             </Grid>
         </SplitView.Content>
     </SplitView>

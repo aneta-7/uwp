@@ -12,6 +12,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Newtonsoft.Json;
+using System.Net.Http;
+using ShoppList.Models;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,6 +28,14 @@ namespace ShoppList
         public History()
         {
             this.InitializeComponent();
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            HttpClient client = new HttpClient();
+            var JsonReponse = await client.GetStringAsync("http://localhost:11063/api/shops");
+            var shopResult = JsonConvert.DeserializeObject<List<Shop>>(JsonReponse);
+            shopsList.ItemsSource = shopResult;
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)

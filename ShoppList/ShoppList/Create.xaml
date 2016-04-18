@@ -7,7 +7,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Accept" Label="Add" Click="AppBarButton_Click_1"/>
+            <AppBarButton Icon="Cancel" Label="Cancel" Click="AppBarButton_Click"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+    
     <SplitView x:Name="MySplitView" DisplayMode="CompactInline"  IsPaneOpen="False" 
                CompactPaneLength="50" OpenPaneLength="150" Margin="0,0,0,0">
         <SplitView.Pane>
@@ -46,9 +52,24 @@
                 <TextBlock x:Name="textBlock1" Margin="10,10,10,0" TextWrapping="Wrap" Text="Create new list" VerticalAlignment="Top" Height="86"  FontSize="34" Foreground="Pink" d:LayoutOverrides="LeftPosition, RightPosition"/>
                 <TextBlock x:Name="textBlock2" Margin="10,90,10,0" TextWrapping="Wrap" Text="Set shopping date:" VerticalAlignment="Top" Height="86"  FontSize="23" Foreground="Gray" d:LayoutOverrides="LeftPosition, RightPosition"/>
                 <DatePicker x:Name="datePicker" Margin="5,150,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                <Button x:Name="button" Content="Submit" HorizontalAlignment="Right" Margin="0,550,50,0" VerticalAlignment="Top" Width="100" Click="button_Click"/>
-                <Button x:Name="button1" Content="Add" HorizontalAlignment="Right" Margin="0,500,50,0" VerticalAlignment="Top" Width="100" Click="button1_Click"/>
-                <Button x:Name="button2" Content="Calcel" HorizontalAlignment="Right" Margin="0,550,180,0" VerticalAlignment="Top" Width="100" Click="button2_Click"/>
+
+                <ComboBox x:Name="comboBox" Margin="-140,-160,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="150" Height="40">
+                    <ComboBoxItem Tag="Eat" IsSelected="True">Eat</ComboBoxItem>
+                    <ComboBoxItem Tag="Chemical">Chemical</ComboBoxItem>
+                    <ComboBoxItem Tag="Cosmetic">Cosmetic</ComboBoxItem>
+                    <ComboBoxItem Tag="Clothing">Clothing</ComboBoxItem>
+                    <ComboBoxItem Tag="Books">Books</ComboBoxItem>
+                    <ComboBoxItem Tag="Medicines">Medicines</ComboBoxItem>
+                    <ComboBoxItem Tag="Fun">Fun</ComboBoxItem>
+                    <ComboBoxItem Tag="Account">Account</ComboBoxItem>
+                    <ComboBoxItem Tag="Media">Media</ComboBoxItem>
+                    <ComboBoxItem Tag="Credit">Credit</ComboBoxItem>
+                    <ComboBoxItem Tag="Other">Other</ComboBoxItem>    
+                </ComboBox>
+
+
+                <TextBox x:Name="textBlock" HorizontalAlignment="Right" Margin="0,-170,30,0" TextWrapping="Wrap" PlaceholderText="Value" VerticalAlignment="Stretch"  Width="100" Height="40"/>
+                <TextBox x:Name="textBlock3" HorizontalAlignment="Right" Margin="0,130,15,0" TextWrapping="Wrap" PlaceholderText="Description"  VerticalAlignment="Stretch"  Width="280" Height="130"/>
 
             </Grid>
         </SplitView.Content>
