@@ -15,6 +15,10 @@ using Windows.UI.Xaml.Navigation;
 using Newtonsoft.Json;
 using System.Net.Http;
 using ShoppList.Models;
+using ShoppList.ViewModel;
+using System.Runtime.Serialization.Json;
+using Windows.Data.Json;
+using Windows.Graphics.Display;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,6 +29,8 @@ namespace ShoppList
     /// </summary>
     public sealed partial class History : Page
     {
+        private Shop _shop;
+
         public History()
         {
             this.InitializeComponent();
@@ -32,10 +38,32 @@ namespace ShoppList
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            HttpClient client = new HttpClient();
-            var JsonReponse = await client.GetStringAsync("http://localhost:11063/api/shops");
-            var shopResult = JsonConvert.DeserializeObject<List<Shop>>(JsonReponse);
-            shopsList.ItemsSource = shopResult;
+            /*   var from = "from";
+               var to = "to";
+               HttpClient client = new HttpClient();
+               var JsonReponse = await client.GetStringAsync("http://localhost:11063/api/shops/"+ from+ "/"+to);
+               var shopResult = JsonConvert.DeserializeObject<List<ShopViewModel>>(JsonReponse);
+               shopsList.ItemsSource = shopResult;
+               */
+
+               /*
+               HttpClient client = new HttpClient();
+               var JsonReponse = await client.GetStringAsync("http://localhost:11063/api/shops");
+               var shopResult = JsonConvert.DeserializeObject<List<ShopViewModel>>(JsonReponse);
+               shopsList.ItemsSource = shopResult;
+
+               */
+               
+
+            DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
+            _shop = (Shop)e.Parameter;
+            
+            
+            
+            //   Data.Text = _shop.Date.ToString();
+
+
+
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)

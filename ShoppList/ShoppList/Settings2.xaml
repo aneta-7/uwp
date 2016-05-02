@@ -44,15 +44,26 @@
             </StackPanel>
         </SplitView.Pane>
         <SplitView.Content>
-            <Grid Background = "{ThemeResource ApplicationPageBackgroundThemeBrush}">
-                <TextBlock x:Name="textBlock1" Margin="10,10,10,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" Height="86"  FontSize="34" Foreground="Pink" d:LayoutOverrides="LeftPosition, RightPosition"/>
-                <TextBlock x:Name="textBlock2" Margin="10,50,10,0" TextWrapping="Wrap" Text="Choose limit" VerticalAlignment="Top" Height="25"  FontSize="20" Foreground="Gray" d:LayoutOverrides="LeftPosition, RightPosition"/>
-                <RadioButton x:Name="radioButton" Content="Week" HorizontalAlignment="Stretch" Margin="10,140,125,0" VerticalAlignment="Top" d:LayoutOverrides="Width" Checked="radioButton_Checked"/>
-                <RadioButton x:Name="radioButton1" Content="Month" HorizontalAlignment="Stretch" Margin="10,190,0,0" VerticalAlignment="Top" Checked="radioButton1_Checked"/>
-                <Slider x:Name="slider" Margin="10,350,10,0" VerticalAlignment="Top" ValueChanged="slider_ValueChanged" Minimum="0" Maximum="2000" Value="100"/>
 
-                <Button x:Name="button" Content="OK" HorizontalAlignment="Right" Margin="0,550,60,0" VerticalAlignment="Top" Width="100" Click="button_Click"/>
-                <Button x:Name="button1" Content="Calcel" HorizontalAlignment="Right" Margin="0,550,180,0" VerticalAlignment="Top" Width="100" Click="button1_Click"/>
+            <Grid Margin="0,0,0,0" Background = "{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="textBlock1"  Margin="10,10,10,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" Height="86"  FontSize="34" Foreground="Pink" d:LayoutOverrides="LeftPosition, RightPosition"/>
+                <TextBlock x:Name="textBlock2" Grid.Row="1" Margin ="20,0,0,0" TextWrapping="Wrap" Text="Choose limit" VerticalAlignment="Top" Height="25"  FontSize="20" Foreground="Gray" d:LayoutOverrides="LeftPosition, RightPosition"/>
+                <RadioButton x:Name="radioButton" Grid.Row ="2" Margin ="20,20,0,0" Content="Week" HorizontalAlignment="Stretch"  VerticalAlignment="Top" d:LayoutOverrides="Width" Checked="radioButton_Checked"/>
+                <RadioButton x:Name="radioButton1" Grid.Row ="3" Margin="20,20,0,0" Content="Month" HorizontalAlignment="Stretch"  VerticalAlignment="Top" Checked="radioButton1_Checked"/>
+                <Slider x:Name="slider" Grid.Row="4" Margin="10,60,0,0" VerticalAlignment="Top" ValueChanged="slider_ValueChanged" Minimum="0" Maximum="15000" Value="400"/>
+
+                <Button x:Name="button" Grid.Row ="5" Content="OK" HorizontalAlignment="Left" Margin="20,30,0,0" VerticalAlignment="Top" Width="100" Click="button_Click"/>
+                <Button x:Name="button1" Grid.Row="5" Content="Calcel" HorizontalAlignment="Left" Margin="200,30,0,0" VerticalAlignment="Top" Width="100" Click="button1_Click"/>
 
             </Grid>
         </SplitView.Content>

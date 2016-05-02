@@ -1,4 +1,5 @@
 ﻿using ShoppList.Models;
+using ShoppList.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace ShoppList.Interfaces
 {
     public interface IHistoryRepository : IRepository, IDisposable
     {
-        Task<Shop> showHistory(string startDate, string endDate);
+      //  Task<ShopViewModel> showHistory(string startDate, string endDate);
     }
 }

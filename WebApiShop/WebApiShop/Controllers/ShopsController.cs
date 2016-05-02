@@ -17,16 +17,16 @@ namespace WebApiShop.Controllers
         
         Shop[] shops = new Shop[]
        {
-            new Shop { Id = 1, Date =" 02-03-2015", Value = "43", Descripion = "first shopping", Category = "Book", User_id = 1 },
-            new Shop { Id = 2, Date = "04-05-2015", Value = "3,23", Category = "Fun", User_id = 4 },
-            new Shop { Id = 3, Date = "04-05-2015", Value = "45", Category = "Eat", User_id = 4 }
+            new Shop { Id = 1, Date = DateTime.Now, Value = 4, Descripion = "first shopping", Category = "Book", User_id = 1 },
+            new Shop { Id = 2, Date= DateTime.Now, Value = 3.23, Category = "Fun", User_id = 4 },
+            new Shop { Id = 3, Date = DateTime.Now, Value = 45, Category = "Eat", User_id = 4 }
        };
         private WebApiShopContext db = new WebApiShopContext();
 
         // GET: api/Shops
         public IQueryable<Shop> GetShops()
         {
-            return db.Shops;
+            return db.Shops; 
         }
 
         // GET: api/Shops/5
@@ -107,6 +107,13 @@ namespace WebApiShop.Controllers
 
             return Ok(shop);
         }
+
+
+        public IEnumerable<Shop> getFromDate(int id, Nullable<DateTime> from, Nullable<DateTime> to)
+        {
+            return db.Shops.Where(a => a.User_id == id).Where(b => b.Date > from ).Where(c=>c.Date <to ).ToList();
+        }
+
 
         protected override void Dispose(bool disposing)
         {

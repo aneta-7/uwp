@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using ShoppList.Interfaces;
 using ShoppList.Models;
+using ShoppList.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -31,8 +32,7 @@ namespace ShoppList
         }
         //add
         private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            //dodanie do bazy
+        { 
         }
         //submit
         private void button_Click(object sender, RoutedEventArgs e)
@@ -79,14 +79,14 @@ namespace ShoppList
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.GoBack();
+            this.Frame.Navigate(typeof(MainPage));
         }
 
         private async void AppBarButton_Click_1(object sender, RoutedEventArgs e)
         {
-            var shop = new Shop()
+            var shop = new ShopViewModel()
             {
-                Date = datePicker.Date.ToString(),
+                Date = datePicker.Date.DateTime,
                 Value = textBlock.Text,
                 Descripion = textBlock3.Text,
                 Category = ((ComboBoxItem)comboBox.SelectedItem).Content.ToString(),
@@ -99,8 +99,14 @@ namespace ShoppList
             HttpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
             await client.PostAsync("http://localhost:11063/api/shops", HttpContent);
+            var dialog = new Windows.UI.Popups.MessageDialog(
+                "Your shopping have been added");
 
-            Frame.Navigate(typeof(History));
+            dialog.Commands.Add(new Windows.UI.Popups.UICommand("OK") { Id = 0 });
+
+            var result = await dialog.ShowAsync();
+
+            this.Frame.Navigate(typeof(MainPage));
         }
     }
 }

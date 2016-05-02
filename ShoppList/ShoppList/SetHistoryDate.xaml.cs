@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ShoppList.Models;
+using ShoppList.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,11 +28,17 @@ namespace ShoppList
         {
             this.InitializeComponent();
         }
+
         //ok
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(History));
+            ShopViewModel list = new ShopViewModel();
+            list.From = data.Date.DateTime;
+            list.To = data2.Date.DateTime; 
+
+            this.Frame.Navigate(typeof(History), list);
         }
+
         //calcel
         private void button1_Click(object sender, RoutedEventArgs e)
         {

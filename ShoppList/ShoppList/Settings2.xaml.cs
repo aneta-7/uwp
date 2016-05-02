@@ -1,7 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using ShopList.Models;
+using ShoppList.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -73,21 +77,50 @@ namespace ShoppList
 
         }
         //ok
-        //zrobic odwolanie do jakiegos okna dialogowego
+
         private async void button_Click(object sender, RoutedEventArgs e)
         {
+            bool isCheckedWeek = false;
+            bool isCheckedMonth = false;
+
+            DateTime calc = DateTime.Today;
+
+            if (radioButton.IsChecked == true)
+            {
+                isCheckedWeek = true;
+                calc = DateTime.Today.AddDays(7);
+            }
+
+            if (radioButton1.IsChecked == true)
+            {
+                isCheckedMonth = true;
+                calc = DateTime.Today.AddDays(30);
+            }
+
+            var settings = new SettingsViewModel()
+            {
+                Week = isCheckedWeek,
+                Month = isCheckedMonth,
+                From = DateTime.Today,
+                To = calc,
+                Limit = (int)slider.Value,
+                User_id = 1
+            };
+
+            var settingsJson = JsonConvert.SerializeObject(settings);
+
+            var client = new HttpClient();
+            var HttpContent = new StringContent(settingsJson);
+            HttpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+
+            await client.PostAsync("http://localhost:11063/api/settings", HttpContent);
+
             var dialog = new Windows.UI.Popups.MessageDialog(
                 "Your limit are selected");
 
             dialog.Commands.Add(new Windows.UI.Popups.UICommand("OK") { Id = 0 });
-          
-            dialog.DefaultCommandIndex = 0;
-            dialog.CancelCommandIndex = 1;
-
+         
             var result = await dialog.ShowAsync();
-
-            var btn = sender as Button;
-            btn.Content = $"Result: {result.Label} ({result.Id})";
             this.Frame.Navigate(typeof(MainPage));
         }
         //calcel

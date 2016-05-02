@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ShoppList.Models;
 using Newtonsoft.Json;
 using System.Net.Http;
+using ShoppList.ViewModel;
 
 namespace ShoppList.Repositories
 {

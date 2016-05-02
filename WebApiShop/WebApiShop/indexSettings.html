@@ -6,19 +6,19 @@
 <body>
 
     <div>
-        <h2>All Shops</h2>
-        <ul id="shops" />
+        <h2>All settings</h2>
+        <ul id="categories" />
     </div>
     <div>
         <h2>Search by ID</h2>
-        <input type="text" id="shopId" size="5" />
+        <input type="text" id="catId" size="5" />
         <input type="button" value="Search" onclick="find();" />
-        <p id="shop" />
+        <p id="setting" />
     </div>
 
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
     <script>
-    var uri = 'api/shops';
+    var uri = 'api/settings';
 
     $(document).ready(function () {
       // Send an AJAX request
@@ -27,39 +27,24 @@
             // On success, 'data' contains a list of products.
             $.each(data, function (key, item) {
               // Add a list item for the product.
-              $('<li>', { text: formatItem(item) }).appendTo($('#shops'));
+              $('<li>', { text: formatItem(item) }).appendTo($('#settings'));
             });
           });
     });
 
     function formatItem(item) {
-        return item.Date + "," + item.Value + ","+ item.Descripion + "," + item.Category + "," + item.User_id;
+        return item.Week + "," + item.Month + "," + item.From + "," + item.To + "," + item.Limit + "," + item.User_id;
     }
 
     function find() {
-      var id = $('#shopId').val();
+      var id = $('#setId').val();
       $.getJSON(uri + '/' + id)
           .done(function (data) {
-            $('#shop').text(formatItem(data));
+            $('#setting').text(formatItem(data));
           })
           .fail(function (jqXHR, textStatus, err) {
-            $('#shop').text('Error: ' + err);
+            $('#setting').text('Error: ' + err);
           });
-    }
-
-    function search() {
-        var from = $('#shopFrom').data();
-        var to = $('#shopTo').data();
-
-        $.getJSON(uri + '/' + from + '/' + to)
-            .done(function (data){
-                $('$shop').text(formatItem(data));
-
-            })
-            .fail(function (jqXHR, textStatus, err){
-                $('#shop').text('Error: '+err);
-            });
-
     }
     </script>
 </body>

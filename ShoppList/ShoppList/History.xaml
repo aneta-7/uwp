@@ -46,10 +46,10 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Padding="20" Margin="20">
-                                <TextBlock Text="{Binding Date}" FontSize="10" Foreground="Gray"/>
-                                <TextBlock Text="{Binding Value}" FontSize="10" Foreground="Gray"/>
-                                <TextBlock Text="{Binding Descripion}" FontSize="10" Foreground="Gray"/>
-                                <TextBlock Text="{Binding Category}" FontSize="10" Foreground="Gray"/>
+                                <TextBlock Text="{Binding Date}" FontSize="20" Foreground="Gray"/>
+                                <TextBlock Text="{Binding Value}" FontSize="15" Foreground="Gray"/>
+                                <TextBlock Text="{Binding Descripion}" FontSize="15" Foreground="Gray"/>
+                                <TextBlock Text="{Binding Category}" FontSize="20" Foreground="Gray"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

@@ -7,10 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="textBlock" Margin="10,101,0,106" TextWrapping="Wrap" Text="App description"  FontSize="34" Foreground="Gray" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition"/>
+    <Grid Margin="0,0,0,0" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <TextBlock x:Name="textBlock" Grid.Row="0" Margin="10,101,0,170" TextWrapping="Wrap" Text="App description"  FontSize="34" Foreground="Gray" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition"/>
         <TextBlock x:Name="textBlock1" Margin="10,10,10,0" TextWrapping="Wrap" Text="Help" VerticalAlignment="Top" Height="86"  FontSize="34" Foreground="Pink" d:LayoutOverrides="LeftPosition, RightPosition"/>
-        <Button x:Name="button" Content="OK" HorizontalAlignment="Right" Margin="0,539,76,0" VerticalAlignment="Top" Width="100" Click="button_Click"/>
-
+        <Button x:Name="button" Grid.Row="2" Content="OK" HorizontalAlignment="Right" Margin="0,0,100,0" VerticalAlignment="Top" Width="100" Click="button_Click"/>
     </Grid>
 </Page>

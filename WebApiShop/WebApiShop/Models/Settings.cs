@@ -7,19 +7,15 @@ using System.Web;
 
 namespace WebApiShop.Models
 {
-    public class Shop
+    public class Settings
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Required]
-        public Nullable<DateTime> Date { get; set; }
-        [Required]
-        public Double Value { get; set; }
-        public String Descripion { get; set; }
-        [Required]
-        public String Category { get; set; }
-        [Required]
+        public bool Week { get; set; }
+        public bool Month { get; set; }
+        public Nullable<DateTime> From { get; set; }
+        public Nullable<DateTime> To { get; set; }
+        public Double Limit { get; set; }
         public int User_id { get; set; }
-
     }
 }
