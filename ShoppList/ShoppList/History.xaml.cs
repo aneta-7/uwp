@@ -29,7 +29,7 @@ namespace ShoppList
     /// </summary>
     public sealed partial class History : Page
     {
-        private Shop _shop;
+
 
         public History()
         {
@@ -38,28 +38,38 @@ namespace ShoppList
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            /*   var from = "from";
-               var to = "to";
-               HttpClient client = new HttpClient();
-               var JsonReponse = await client.GetStringAsync("http://localhost:11063/api/shops/"+ from+ "/"+to);
-               var shopResult = JsonConvert.DeserializeObject<List<ShopViewModel>>(JsonReponse);
-               shopsList.ItemsSource = shopResult;
-               */
 
-               /*
-               HttpClient client = new HttpClient();
-               var JsonReponse = await client.GetStringAsync("http://localhost:11063/api/shops");
-               var shopResult = JsonConvert.DeserializeObject<List<ShopViewModel>>(JsonReponse);
-               shopsList.ItemsSource = shopResult;
+            var date = App.Current as App;
 
-               */
-               
 
-            DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
-            _shop = (Shop)e.Parameter;
+            var from = date.From;
+            var to = date.To;
+            String currentUser = "1";
+
+            String url = String.Format("http://localhost:11063/api/Shops/getFromDate/id={0}&from={1}&to={2}", currentUser, from, to);
             
-            
-            
+
+            HttpClient client = new HttpClient();
+            HttpResponseMessage JsonReponse = await client.GetAsync(url);
+            var response =  JsonReponse.Content.ReadAsStringAsync().Result;
+            var shopResult = JsonConvert.DeserializeObject<List<ShopViewModel>>(response);
+            shopsList.ItemsSource = shopResult;
+
+
+            /*
+            HttpClient client = new HttpClient();
+            var JsonReponse = await client.GetStringAsync("http://localhost:11063/api/shops");
+            var shopResult = JsonConvert.DeserializeObject<List<ShopViewModel>>(JsonReponse);
+            shopsList.ItemsSource = shopResult;
+
+            */
+
+
+            //   DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
+            //   _shop = (Shop)e.Parameter;
+
+
+
             //   Data.Text = _shop.Date.ToString();
 
 

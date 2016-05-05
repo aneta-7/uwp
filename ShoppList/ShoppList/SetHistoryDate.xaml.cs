@@ -32,11 +32,11 @@ namespace ShoppList
         //ok
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            ShopViewModel list = new ShopViewModel();
-            list.From = data.Date.DateTime;
-            list.To = data2.Date.DateTime; 
+            var date = App.Current as App;
+            date.From = data.Date.DateTime;
+            date.To = data2.Date.DateTime;
 
-            this.Frame.Navigate(typeof(History), list);
+            this.Frame.Navigate(typeof(History), date);
         }
 
         //calcel

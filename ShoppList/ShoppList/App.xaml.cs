@@ -26,6 +26,9 @@ namespace ShoppList
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
+
+        public Nullable<DateTime> From { get; set; }
+        public Nullable<DateTime> To { get; set; }
         public App()
         {
             Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync(

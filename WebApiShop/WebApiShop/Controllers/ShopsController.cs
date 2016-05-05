@@ -109,9 +109,11 @@ namespace WebApiShop.Controllers
         }
 
 
-        public IEnumerable<Shop> getFromDate(int id, Nullable<DateTime> from, Nullable<DateTime> to)
+        [ResponseType(typeof(Shop))]
+        public IHttpActionResult getFromDate(int id, DateTime? from, DateTime? to)
         {
-            return db.Shops.Where(a => a.User_id == id).Where(b => b.Date > from ).Where(c=>c.Date <to ).ToList();
+            var shops = db.Shops.Where(a => a.User_id == id).Where(b => b.Date > from ).Where(c=>c.Date <to ).ToList();
+            return Ok(shops);
         }
 
 
