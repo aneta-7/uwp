@@ -37,18 +37,43 @@
                         Width="50" Height="50" Background="Transparent" Click="MenuButton5_Click"/>
                     <TextBlock Text="Help" FontSize="18" VerticalAlignment="Center" />
                 </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="MenuButton6" FontFamily="Segoe MDL2 Assets" Content="&#xE899;"
+                        Width="50" Height="50" Background="Transparent" Click="MenuButton6_Click"/>
+                    <TextBlock Text="Log out" FontSize="18" VerticalAlignment="Center" />
+                </StackPanel>
             </StackPanel>
         </SplitView.Pane>
         <SplitView.Content>
+
             <Grid Background = "{ThemeResource ApplicationPageBackgroundThemeBrush}">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="179*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="451*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
                 <TextBlock Text="Your Shopping List" FontSize="34" Foreground="Pink"
-                           HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="221" Margin="10,0,0,200" Width="300" Grid.Row="2" d:LayoutOverrides="Height"/>
+                           HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0"  d:LayoutOverrides="Height"/>
+                <TextBlock x:Name="textBox" Grid.Row ="1" Margin="50,-100,0,0" TextWrapping="Wrap" Text="Total limit: "/>
+                <TextBlock x:Name="textBox1" Grid.Column="1" Margin="-100,220,0,0" TextWrapping="Wrap" Text="{Binding Limit}"/>
+
+                <TextBlock x:Name="textBox2" Grid.Row ="2" Margin="50,-60,0,0" TextWrapping="Wrap" Text="Spend: "/>
+                <TextBlock x:Name="textBox3" Grid.Column="1" Margin="-100,260,0,0" TextWrapping="Wrap" Text=""/>
+
+                <TextBlock x:Name="textBox4" Grid.Row ="3" Margin="50,-20,0,0" TextWrapping="Wrap" Text="Current balance: "/>
+                <TextBlock x:Name="textBox5" Grid.Column="2" Margin="-100,300,0,0" TextWrapping="Wrap" Text=""/>
+
             </Grid>
+
         </SplitView.Content>
     </SplitView>
 </Page>

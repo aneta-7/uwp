@@ -108,11 +108,11 @@ namespace WebApiShop.Controllers
             return Ok(shop);
         }
 
-
         [ResponseType(typeof(Shop))]
-        public IHttpActionResult getFromDate(int id, DateTime? from, DateTime? to)
+        [Route("api/shops/getFromDate/{id}/{from}/{to}")]
+        public IHttpActionResult getFromDate(int id, DateTime from, DateTime to)
         {
-            var shops = db.Shops.Where(a => a.User_id == id).Where(b => b.Date > from ).Where(c=>c.Date <to ).ToList();
+            var shops = db.Shops.Where(a => a.User_id == id).Where(b => b.Date > from).Where(c => c.Date < to).ToList();
             return Ok(shops);
         }
 

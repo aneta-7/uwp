@@ -36,6 +36,13 @@ namespace ShoppList
             MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
         }
 
+        private void MenuButton6_Click(object sender, RoutedEventArgs e)
+        {
+            var data = App.Current as App;
+            this.Frame.Navigate(typeof(Login));
+
+        }
+
         //help
         private void MenuButton5_Click(object sender, RoutedEventArgs e)
         {
@@ -83,6 +90,9 @@ namespace ShoppList
             bool isCheckedWeek = false;
             bool isCheckedMonth = false;
 
+            var date = App.Current as App;
+            var currentUser = date.currentUserId;
+
             DateTime calc = DateTime.Today;
 
             if (radioButton.IsChecked == true)
@@ -101,10 +111,10 @@ namespace ShoppList
             {
                 Week = isCheckedWeek,
                 Month = isCheckedMonth,
-                From = DateTime.Today,
+                From = DateTime.Now,
                 To = calc,
                 Limit = (int)slider.Value,
-                User_id = 1
+                User_id = currentUser
             };
 
             var settingsJson = JsonConvert.SerializeObject(settings);

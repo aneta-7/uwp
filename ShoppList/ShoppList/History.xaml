@@ -38,6 +38,11 @@
                         Width="50" Height="50" Background="Transparent" Click="MenuButton5_Click"/>
                     <TextBlock Text="Help" FontSize="18" VerticalAlignment="Center" />
                 </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="MenuButton6" FontFamily="Segoe MDL2 Assets" Content="&#xE899;"
+                        Width="50" Height="50" Background="Transparent" Click="MenuButton6_Click"/>
+                    <TextBlock Text="Log out" FontSize="18" VerticalAlignment="Center" />
+                </StackPanel>
             </StackPanel>
         </SplitView.Pane>
         <SplitView.Content>

@@ -1,35 +1,158 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 using WebApiShop.Models;
 
 namespace WebApiShop.Controllers
 {
     public class UsersController : ApiController
     {
-        User[] users = new User[]
-       {
-            new User { Login = "aneta", Password="123" },
-            new User { Login = "abcd", Password = "1234" },
-            new User { Login = "rewrwe", Password = "324" }
-       };
+        private WebApiShopContext db = new WebApiShopContext();
 
-        public IEnumerable<User> GetAllUsers()
+        // GET: api/Users
+        public IQueryable<User> GetUsers()
         {
-            return users;
+            return db.Users;
         }
 
+        // GET: api/Users/5
+        [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(int id)
         {
-            var user = users.FirstOrDefault((p) => p.Id == id);
+            User user = db.Users.Find(id);
             if (user == null)
             {
                 return NotFound();
             }
+
             return Ok(user);
+        }
+
+        // PUT: api/Users/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutUser(int id, User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != user.Id)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(user).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UserExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // POST: api/Users
+        [ResponseType(typeof(User))]
+        public IHttpActionResult PostUser(User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Users.Add(user);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
+        }
+
+        // DELETE: api/Users/5
+        [ResponseType(typeof(User))]
+        public IHttpActionResult DeleteUser(int id)
+        {
+            User user = db.Users.Find(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            db.Users.Remove(user);
+            db.SaveChanges();
+
+            return Ok(user);
+        }
+
+
+     
+        [Route("api/users/getCurrentUser/{login}/{password}")]
+        [AcceptVerbs("GET", "POST")]
+        public IHttpActionResult getCurrentUser(string login, string password)
+        {
+            var currentUser = db.Users.Where(a => a.Login == login).Where(c => c.Password==password).Select(b => b.Id);
+            return Ok(currentUser);
+        }
+
+        [Route("api/users/checkLogin/{login}/{password}")]
+        [AcceptVerbs("GET", "POST")]
+        public IHttpActionResult checkLogin(string login, string password)
+        {
+            var currentUser = db.Users.Where(a => a.Login == login).Where(c => c.Password == password).Select(b => b.Id).Count();
+            bool query;
+            if (currentUser != 0)
+                query = true;
+            else
+                query = false;
+            return Ok(query);
+
+
+        }
+
+
+        [ResponseType(typeof(User))]
+        [Route("api/users/existsUser/{login}")]
+        [AcceptVerbs("GET", "POST")]
+        public IHttpActionResult existsUser(string login)
+        {
+            var user = db.Users.Where(a => a.Login == login).FirstOrDefault();
+            bool query;
+            if (user != null)
+                query = true;
+            else
+                query = false;
+            return Ok(query);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private bool UserExists(int id)
+        {
+            return db.Users.Count(e => e.Id == id) > 0;
         }
     }
 }

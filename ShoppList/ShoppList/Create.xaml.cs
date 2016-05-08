@@ -77,6 +77,13 @@ namespace ShoppList
             this.Frame.Navigate(typeof(Help2));
         }
 
+        private void MenuButton6_Click(object sender, RoutedEventArgs e)
+        {
+            var data = App.Current as App;
+            this.Frame.Navigate(typeof(Login));
+
+        }
+
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
@@ -84,13 +91,16 @@ namespace ShoppList
 
         private async void AppBarButton_Click_1(object sender, RoutedEventArgs e)
         {
+            var date = App.Current as App;
+            var currentUser = date.currentUserId;
+
             var shop = new ShopViewModel()
             {
                 Date = datePicker.Date.DateTime,
                 Value = textBlock.Text,
                 Descripion = textBlock3.Text,
                 Category = ((ComboBoxItem)comboBox.SelectedItem).Content.ToString(),
-                User_id = 1
+                User_id = currentUser
             };
             var shopJson = JsonConvert.SerializeObject(shop);
 
@@ -99,6 +109,8 @@ namespace ShoppList
             HttpContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
             await client.PostAsync("http://localhost:11063/api/shops", HttpContent);
+
+
             var dialog = new Windows.UI.Popups.MessageDialog(
                 "Your shopping have been added");
 

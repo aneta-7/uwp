@@ -108,32 +108,37 @@
     <Compile Include="History.xaml.cs">
       <DependentUpon>History.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\ICreateRepository.cs" />
-    <Compile Include="Interfaces\IHistoryRepository.cs" />
-    <Compile Include="Interfaces\IRepository.cs" />
-    <Compile Include="Interfaces\ISettingsRepository.cs" />
+    <Compile Include="Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageDialog.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Settings.cs" />
-    <Compile Include="Models\Shop.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="NewList.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Interfaces\IWebApiConector.cs" />
-    <Compile Include="Repositories\CreateRepository.cs" />
-    <Compile Include="Repositories\HistoryRepository.cs" />
-    <Compile Include="Repositories\SettingsRepository.cs" />
     <Compile Include="SetHistoryDate.xaml.cs">
       <DependentUpon>SetHistoryDate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings2.xaml.cs">
       <DependentUpon>Settings2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\ICreateRepository.cs" />
+    <Compile Include="Interfaces\IHistoryRepository.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\ISettingsRepository.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Settings.cs" />
+    <Compile Include="Models\Shop.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Interfaces\IWebApiConector.cs" />
+    <Compile Include="Repositories\CreateRepository.cs" />
+    <Compile Include="Repositories\HistoryRepository.cs" />
+    <Compile Include="Repositories\SettingsRepository.cs" />
     <Compile Include="ShopListWebApiConnector.cs" />
-    <Compile Include="Classes\ChooseDate.cs" />
+    <Compile Include="Signup.xaml.cs">
+      <DependentUpon>Signup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\ShopViewModel.cs" />
   </ItemGroup>
@@ -161,14 +166,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Create.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Help2.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="History.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -177,10 +186,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SetHistoryDate.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Settings2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Signup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

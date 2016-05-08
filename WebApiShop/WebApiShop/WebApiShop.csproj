@@ -149,6 +149,10 @@
     <Compile Include="Migrations\201605021139084_settings.Designer.cs">
       <DependentUpon>201605021139084_settings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605062007511_usersTable.cs" />
+    <Compile Include="Migrations\201605062007511_usersTable.Designer.cs">
+      <DependentUpon>201605062007511_usersTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Product.cs" />
@@ -157,7 +161,6 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\WebApiShopContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\show.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -184,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605021139084_settings.resx">
       <DependentUpon>201605021139084_settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605062007511_usersTable.resx">
+      <DependentUpon>201605062007511_usersTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

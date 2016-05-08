@@ -49,6 +49,12 @@ namespace ShoppList
         {
             MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
         }
+        private void MenuButton6_Click(object sender, RoutedEventArgs e)
+        {
+            var data = App.Current as App;
+            this.Frame.Navigate(typeof(Login));
+
+        }
 
         //help
         private void MenuButton5_Click(object sender, RoutedEventArgs e)

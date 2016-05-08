@@ -22,5 +22,7 @@ namespace WebApiShop.Models
         public System.Data.Entity.DbSet<WebApiShop.Models.Shop> Shops { get; set; }
 
         public System.Data.Entity.DbSet<WebApiShop.Models.Settings> Settings { get; set; }
+
+        public System.Data.Entity.DbSet<WebApiShop.Models.User> Users { get; set; }
     }
 }

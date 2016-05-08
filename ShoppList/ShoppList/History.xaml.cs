@@ -30,50 +30,26 @@ namespace ShoppList
     public sealed partial class History : Page
     {
 
-
         public History()
         {
             this.InitializeComponent();
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
-        {
-
+        {        
             var date = App.Current as App;
 
+            var from = String.Format("{0:M-d-yyyy}", date.From);
+            var to = String.Format("{0:M-d-yyyy}", date.To);
+            var currentUser = date.currentUserId;
 
-            var from = date.From;
-            var to = date.To;
-            String currentUser = "1";
-
-            String url = String.Format("http://localhost:11063/api/Shops/getFromDate/id={0}&from={1}&to={2}", currentUser, from, to);
-            
-
+            String url = String.Format("http://localhost:11063/api/shops/getFromDate/{0}/{1}/{2}", currentUser, from, to);
+ 
             HttpClient client = new HttpClient();
             HttpResponseMessage JsonReponse = await client.GetAsync(url);
             var response =  JsonReponse.Content.ReadAsStringAsync().Result;
             var shopResult = JsonConvert.DeserializeObject<List<ShopViewModel>>(response);
             shopsList.ItemsSource = shopResult;
-
-
-            /*
-            HttpClient client = new HttpClient();
-            var JsonReponse = await client.GetStringAsync("http://localhost:11063/api/shops");
-            var shopResult = JsonConvert.DeserializeObject<List<ShopViewModel>>(JsonReponse);
-            shopsList.ItemsSource = shopResult;
-
-            */
-
-
-            //   DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
-            //   _shop = (Shop)e.Parameter;
-
-
-
-            //   Data.Text = _shop.Date.ToString();
-
-
-
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
@@ -107,6 +83,13 @@ namespace ShoppList
         {
             this.Frame.Navigate(typeof(Help2));
         }
+        private void MenuButton6_Click(object sender, RoutedEventArgs e)
+        {
+            var data = App.Current as App;
+            this.Frame.Navigate(typeof(Login));
+
+        }
+
         //ok
         private void button_Click(object sender, RoutedEventArgs e)
         {
